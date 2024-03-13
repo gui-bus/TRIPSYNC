@@ -1,8 +1,12 @@
+'use client'
+import { useUser } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { SiYourtraveldottv } from "react-icons/si";
 
 const HeroSection = () => {
+  const { isSignedIn } = useUser();
+
   return (
     <section className="relative bg-[url('/HeroBanner.svg')] bg-cover bg-center bg-no-repeat py-10 lg:py-20 3xl:rounded-b-2xl">
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-5 p-5 text-center text-white">
@@ -19,7 +23,7 @@ const HeroSection = () => {
           color="primary"
           size={"lg"}
           as={Link}
-          href="#"
+          href={`${isSignedIn ? "/dashboard" : "/sign-in"}`}
           className="h-14 w-full uppercase text-white"
           endContent={<SiYourtraveldottv size={25} />}
           radius="sm"
