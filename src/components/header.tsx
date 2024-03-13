@@ -1,3 +1,5 @@
+"use client";
+import { UserButton, useUser } from "@clerk/nextjs";
 import {
   Navbar,
   NavbarBrand,
@@ -10,6 +12,8 @@ import {
 import { ImEnter } from "react-icons/im";
 
 const Header = () => {
+  const { isSignedIn } = useUser();
+
   return (
     <Navbar
       position="sticky"
@@ -31,16 +35,23 @@ const Header = () => {
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button
-            color="primary"
-            href="#"
-            variant="shadow"
-            className="text-white"
-            endContent={<ImEnter size={25} />}
-            radius="sm"
-          >
-            Login
-          </Button>
+          {!isSignedIn ? (
+            <Button
+              as={Link}
+              color="primary"
+              href="/sign-in"
+              variant="shadow"
+              className="text-white"
+              endContent={<ImEnter size={25} />}
+              radius="sm"
+            >
+              Log In
+            </Button>
+          ) : (
+            <div className="border-2 border-primary rounded-full">
+              <UserButton />
+            </div>
+          )}
         </NavbarItem>
       </NavbarContent>
     </Navbar>

@@ -4,6 +4,7 @@ import "./globals.css";
 import UIProvider from "../../providers/UIProvider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -22,16 +23,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>
-        <UIProvider>
-          <main className="mx-auto w-full 3xl:max-w-7xl">
-            <Header />
-            {children}
-            <Footer />
-          </main>
-        </UIProvider>
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: "#1BB2B5" },
+      }}
+    >
+      <html lang="en">
+        <body className={montserrat.className}>
+          <UIProvider>
+            <main className="mx-auto w-full 3xl:max-w-7xl">
+              <Header />
+              {children}
+              <Footer />
+            </main>
+          </UIProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
