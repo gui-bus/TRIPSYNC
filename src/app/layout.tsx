@@ -31,9 +31,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={montserrat.className}>
           <UIProvider>
-            <main className="mx-auto w-full 3xl:max-w-7xl">
+            <main className="mx-auto flex min-h-screen w-full flex-col 3xl:max-w-7xl">
               <Header />
-              {children}
+              <div className="flex-grow">{children}</div>
               <Footer />
             </main>
           </UIProvider>
