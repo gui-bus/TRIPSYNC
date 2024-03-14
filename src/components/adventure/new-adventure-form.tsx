@@ -24,6 +24,7 @@ import {
   Divider,
   Checkbox,
   CircularProgress,
+  Link,
 } from "@nextui-org/react";
 
 import { z } from "zod";
@@ -47,6 +48,9 @@ import { format } from "date-fns";
 import toast from "react-hot-toast";
 
 import { countries } from "../../../utils/data";
+import { createVacation } from "../../../actions/new-vacation";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
   name: z
@@ -74,6 +78,7 @@ const FormSchema = z.object({
     .nullable(),
   participants: z.array(z.string()).default([]).optional(),
   isPublic: z.boolean().optional(),
+  userId: z.string().optional(),
 });
 
 const NewAdventureForm = () => {
@@ -85,6 +90,9 @@ const NewAdventureForm = () => {
   const [newParticipant, setNewParticipant] = useState("");
 
   const [isPublic, setIsPublic] = useState(false);
+  const router = useRouter();
+
+  const { user } = useUser();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -133,32 +141,52 @@ const NewAdventureForm = () => {
   };
 
   const handleSubmit = async (data: z.infer<typeof FormSchema>) => {
-    data.participants = participants;
-    data.isPublic = isPublic;
+    try {
+      data.participants = participants;
+      data.isPublic = isPublic;
+      data.userId = user?.id ?? "";
 
-    console.log({ data });
+      if (!data.startDate || !data.endDate) {
+        throw new Error("Start date and end date are required.");
+      }
 
-    form.setValue("name", "");
-    form.setValue("title", "");
-    form.setValue("description", "");
-    form.setValue("startDate", null);
-    form.setValue("endDate", null);
-    form.setValue("countries", "");
-    form.setValue("participants", []);
+      await createVacation({ data });
 
-    setSelectedCountries(new Set([]));
-    setParticipants([]);
-    setIsPublic(false);
+      form.setValue("name", "");
+      form.setValue("title", "");
+      form.setValue("description", "");
+      form.setValue("startDate", null);
+      form.setValue("endDate", null);
+      form.setValue("countries", "");
+      form.setValue("participants", []);
 
-    toast.success("Success", {
-      style: {
-        fontSize: "12px",
-      },
-    });
+      setSelectedCountries(new Set([]));
+      setParticipants([]);
+      setIsPublic(false);
+
+      toast.success("Vacation plan successfully created!", {
+        style: {
+          fontSize: "12px",
+        },
+      });
+
+      router.push("/adventure/list");
+
+      console.log({ data });
+    } catch (error) {
+      toast.error("Error!", {
+        style: {
+          fontSize: "12px",
+        },
+      });
+    }
   };
 
   return (
     <div className="flex flex-col gap-5 p-5">
+      <p className="ml-auto select-none text-xs">
+        Fields marked with <span className="text-red-500">*</span> are required.
+      </p>
       <Form {...form}>
         <form
           className="flex w-full flex-col gap-4"
@@ -466,25 +494,35 @@ const NewAdventureForm = () => {
             Share my vacation plans publicly
           </Checkbox>
 
-          <div className="flex items-center gap-5">
-            <CircularProgress
-              aria-label="Loading..."
-              size="lg"
-              value={formProgress}
-              color="primary"
-              showValueLabel={true}
-            />
-            <Button
-              variant={"shadow"}
-              color="primary"
-              type="submit"
-              radius="sm"
-              disabled={formProgress !== 100}
-              className="w-full uppercase text-white disabled:opacity-50 disabled:hover:opacity-50 disabled:cursor-not-allowed"
-              endContent={<MdOutlineAddTask size={25} />}
-            >
-              Start Adventure
-            </Button>
+          <div className="flex flex-col items-center justify-center w-full gap-2">
+            <div className="flex items-center gap-5 w-full">
+              <CircularProgress
+                aria-label="Loading..."
+                size="lg"
+                value={formProgress}
+                color="primary"
+                showValueLabel={true}
+              />
+              <Button
+                variant={"shadow"}
+                color="primary"
+                type="submit"
+                radius="sm"
+                disabled={formProgress !== 100}
+                className="w-full uppercase text-white disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
+                endContent={<MdOutlineAddTask size={25} />}
+              >
+                Start Adventure
+              </Button>
+            </div>
+
+            <p className="text-xs">
+              Already created a vacation plan?{" "}
+              <Link href="/adventure/list" className="text-xs">
+                click here
+              </Link>{" "}
+              to view it.
+            </p>
           </div>
         </form>
       </Form>
