@@ -5,6 +5,7 @@ import UIProvider from "../../providers/UIProvider";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={montserrat.className}>
+          <Toaster position="top-center" reverseOrder={false} />
           <UIProvider>
             <main className="mx-auto flex min-h-screen w-full flex-col 3xl:max-w-7xl">
               <Header />
