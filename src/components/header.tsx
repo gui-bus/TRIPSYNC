@@ -15,6 +15,7 @@ import { ImEnter } from "react-icons/im";
 import { RxDashboard } from "react-icons/rx";
 import { MdMenu } from "react-icons/md";
 import { RiPagesLine } from "react-icons/ri";
+import { TbScriptPlus, TbScript } from "react-icons/tb";
 
 import {
   Sheet,
@@ -63,30 +64,14 @@ const Header = () => {
             </Button>
           ) : (
             <div className="flex items-center gap-5">
-              <nav className="flex items-center gap-5">
-                <div className="rounded-full border-2 border-primary">
-                  <UserButton />
-                </div>
-
-                <Button
-                  as={Link}
-                  color="primary"
-                  href="/dashboard"
-                  variant="shadow"
-                  className="hidden text-white md:flex"
-                  endContent={<RxDashboard size={25} />}
-                  radius="sm"
-                >
-                  Dashboard
-                </Button>
-              </nav>
+              <div className="rounded-full border-2 transition-all duration-200 ease-in-out hover:border-primary">
+                <UserButton />
+              </div>
 
               <Sheet>
-                <SheetTrigger asChild className="md:hidden">
+                <SheetTrigger asChild>
                   <Button
-                    color="primary"
-                    variant="shadow"
-                    className="text-white"
+                    variant="light"
                     endContent={<MdMenu size={30} />}
                     radius="sm"
                     isIconOnly
@@ -109,25 +94,45 @@ const Header = () => {
                       <nav className="mt-5 flex flex-col items-center justify-center gap-3">
                         <Button
                           as={Link}
-                          color="primary"
                           href="/"
-                          variant="shadow"
-                          className="w-full text-white"
-                          endContent={<RiPagesLine size={25} />}
+                          variant="ghost"
+                          className="w-full"
+                          endContent={<RiPagesLine size={25} className="opacity-80"/>}
                           radius="sm"
                         >
                           Homepage
                         </Button>
+
                         <Button
                           as={Link}
-                          color="primary"
                           href="/dashboard"
-                          variant="shadow"
-                          className="w-full text-white"
-                          endContent={<RxDashboard size={25} />}
+                          variant="ghost"
+                          className="w-full"
+                          endContent={<RxDashboard size={25} className="opacity-80"/>}
                           radius="sm"
                         >
                           Dashboard
+                        </Button>
+
+                        <Button
+                          as={Link}
+                          href="/adventure/list"
+                          variant="ghost"
+                          className="w-full"
+                          endContent={<TbScript size={25} className="opacity-80"/>}
+                          radius="sm"
+                        >
+                          My vacation plans
+                        </Button>
+                        <Button
+                          as={Link}
+                          href="/adventure/new"
+                          variant="ghost"
+                          className="w-full"
+                          endContent={<TbScriptPlus size={25} className="opacity-80"/>}
+                          radius="sm"
+                        >
+                          Add new vacation plan
                         </Button>
                       </nav>
                     </SheetDescription>
