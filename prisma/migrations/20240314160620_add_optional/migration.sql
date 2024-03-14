@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Vacation" ALTER COLUMN "isPublic" DROP NOT NULL,
+ALTER COLUMN "isPublic" SET DEFAULT false,
+ALTER COLUMN "participants" SET DEFAULT ARRAY[]::TEXT[],
+ALTER COLUMN "userId" DROP NOT NULL;
