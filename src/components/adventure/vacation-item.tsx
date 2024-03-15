@@ -35,6 +35,7 @@ import { useRouter } from "next/navigation";
 
 interface VacationItemProps {
   vacation: Vacation;
+  isPublicPage?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const VacationItem = ({ vacation }: VacationItemProps) => {
+const VacationItem = ({ vacation, isPublicPage }: VacationItemProps) => {
   const [deleteIsLoading, setDeleteIsLoading] = useState(false);
   const countriesArray = vacation.countries.split(",");
   const componentRef = useRef(null);
@@ -105,15 +106,17 @@ const VacationItem = ({ vacation }: VacationItemProps) => {
       isFooterBlurred
       isPressable
     >
-      <div className="hidden group-hover:flex">
-        <Button
-          endContent={<LuTrash size={20} />}
-          color="danger"
-          isIconOnly
-          className="absolute right-3 top-3 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
-          onClick={handleDeleteClick}
-          disabled={deleteIsLoading}
-        />
+      <div className={`${isPublicPage && "hidden"}`}>
+        <div className="hidden group-hover:flex">
+          <Button
+            endContent={<LuTrash size={20} />}
+            color="danger"
+            isIconOnly
+            className="absolute right-3 top-3 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:opacity-50"
+            onClick={handleDeleteClick}
+            disabled={deleteIsLoading}
+          />
+        </div>
       </div>
       <div ref={componentRef} className="w-full">
         <CardHeader className="flex items-center justify-center gap-3 p-5 text-center">
