@@ -494,8 +494,8 @@ const NewAdventureForm = () => {
             Share my vacation plans publicly
           </Checkbox>
 
-          <div className="flex flex-col items-center justify-center w-full gap-2">
-            <div className="flex items-center gap-5 w-full">
+          <div className="flex w-full flex-col items-center justify-center gap-2">
+            <div className="flex w-full items-center gap-5">
               <CircularProgress
                 aria-label="Loading..."
                 size="lg"
@@ -518,10 +518,12 @@ const NewAdventureForm = () => {
 
             <p className="text-xs">
               Already created a vacation plan?{" "}
-              <Link href="/adventure/list" className="text-xs">
-                click here
+              <Link
+                href="/adventure/list"
+                className="text-xs text-black transition-all duration-200 ease-in-out hover:text-primary hover:underline hover:underline-offset-4"
+              >
+                Click here to view it.
               </Link>{" "}
-              to view it.
             </p>
           </div>
         </form>
