@@ -1,3 +1,14 @@
+/**
+ * Header Component
+ *
+ * This component displays the top navigation bar of the site, including the TRIPSYNC logo and a dropdown menu for navigation and login/logout actions.
+ *
+ * Features:
+ * - Displays the TRIPSYNC logo.
+ * - If the user is not logged in, it shows a dropdown menu with limited navigation options, allowing access to the 'homepage' and 'view public plans' pages, and providing a login option.
+ * - If the user is logged in, the menu displays their name/email and options to navigate to the 'dashboard', 'my vacation plans', and 'add vacation plan' pages, as well as a logout button instead of the login button.
+ */
+
 "use client";
 import { useClerk, useUser } from "@clerk/nextjs";
 import {
@@ -34,7 +45,7 @@ const Header = () => {
       isBordered
       className="w-full drop-shadow-md"
     >
-      <div className="mx-auto flex w-full max-w-xs sm:max-w-md lg:max-w-7xl items-center">
+      <div className="mx-auto flex w-full max-w-xs items-center sm:max-w-md lg:max-w-7xl">
         <NavbarBrand>
           <Link href="/">
             <Image

@@ -1,8 +1,23 @@
+/**
+ * NewAdventureForm Component
+ *
+ * This component manages the creation of new vacation plans. It utilizes a combination of components from the ShadCN and NextUI libraries to create the form, with field validation and checks handled by the ShadCN <Form/> component using React Hook Form + Zod.
+ *
+ * Features:
+ * - Displays fields for the user to fill in and register their new vacation plan, including name, title, countries, description, startdate, enddate, participants, and a boolean field to make the plan public or not.
+ * - Shows a progress counter that ranges from 0 to 100%. Once the maximum value is reached, the Start Adventure button becomes active, allowing the user to submit the form.
+ * - Supports various input types like text, textarea, select, datepicker, and checkbox.
+ * - Allows users to select multiple countries for their vacation plan using a multi-select component.
+ * - Handles date selection for start and end dates with the help of a calendar component.
+ * - Provides options to add and remove participants dynamically, with their names displayed as chips.
+ * - Includes a checkbox to toggle the visibility of the vacation plan to the public.
+ * - Upon successful submission, clears the form fields and navigates the user to the vacation plans list page.
+ */
+
 "use client";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,

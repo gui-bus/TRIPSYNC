@@ -1,3 +1,15 @@
+/**
+ * VacationItem Component
+ *
+ * This component displays information previously filled out in the new vacation plan form.
+ *
+ * Features:
+ * - Displays all user-entered information from the form.
+ * - Formats Start and End Date values as "dd/MM/yyyy" and displays SVG flags using React Country Flag for selected countries.
+ * - Provides options to print vacation plans using 'react-to-print' and download them in PDF format using 'react-pdf/renderer'.
+ * - Allows users to delete their vacation plans.
+ */
+
 "use client";
 import {
   Button,

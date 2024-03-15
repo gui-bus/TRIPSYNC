@@ -1,6 +1,23 @@
+/**
+ * Footer Component
+ *
+ * This component displays the footer of the site.
+ *
+ * Features:
+ * - Displays the TRIPSYNC logo.
+ * - Displays the All Rights Reserved message.
+ * - Displays three buttons that redirect respectively to the creator's portfolio, LinkedIn, and GitHub.
+ * - Also displays three categories of links: 'categories', 'about us', and 'resources' with some useful links to be added in the future.
+ */
+
 import React, { ReactNode } from "react";
 import Image from "next/image";
-import { FaGithub, FaLinkedinIn, FaChevronRight, FaSitemap } from "react-icons/fa6";
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaChevronRight,
+  FaSitemap,
+} from "react-icons/fa6";
 import { Link } from "@nextui-org/react";
 import { Button } from "./ui/button";
 

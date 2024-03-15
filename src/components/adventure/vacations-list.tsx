@@ -1,3 +1,14 @@
+/**
+ * VacationList Component
+ *
+ * This component displays the list of vacation plans created by the currently logged-in user.
+ *
+ * Features:
+ * - Displays all user-entered information from the form.
+ * - Shows vacation plans created by the logged-in user.
+ * - Provides an option to create a new plan if none exists.
+ */
+
 import VacationItem from "@/components/adventure/vacation-item";
 import { userVacations } from "../../../actions/vacations";
 import { useEffect, useState } from "react";
