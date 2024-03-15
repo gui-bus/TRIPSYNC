@@ -73,7 +73,7 @@ const AboutSection = () => {
           <div className="flex flex-col items-center justify-center gap-3 lg:items-start lg:justify-start">
             <div className="flex flex-col items-center justify-around gap-5 p-3 text-center md:p-0 xl:flex-row xl:text-start">
               <div className="flex flex-col items-start justify-start gap-3 xl:w-1/2">
-                <h2 className="text-5xl font-light uppercase tracking-tighter">
+                <h2 className="text-4xl md:text-5xl font-light uppercase tracking-tighter">
                   Embrace Your <span className="font-black">Opportunities</span>
                 </h2>
               </div>
@@ -87,7 +87,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-2 lg:grid-cols-3 w-full mx-auto">
             {benefitsData.map((benefit) => (
               <Card
                 className="border-none shadow-md"
