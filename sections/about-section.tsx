@@ -1,6 +1,7 @@
 "use client";
-import { Card, CardBody, CardFooter, Chip, Divider } from "@nextui-org/react";
+import { Button, Card, CardFooter, Chip, Divider, Link } from "@nextui-org/react";
 import Image from "next/image";
+import { MdPublic } from "react-icons/md";
 
 const benefitsData = [
   {
@@ -27,7 +28,7 @@ const AboutSection = () => {
   return (
     <section className="py-10">
       <section className="w-full 3xl:rounded-2xl">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-5 p-5 text-center">
+        <div className="mx-auto flex w-full 3xl:max-w-7xl flex-col items-center justify-center gap-5 p-5 text-center">
           <div className="space-y-4">
             <Chip
               className="uppercase text-white"
@@ -47,14 +48,27 @@ const AboutSection = () => {
                 limits. More than just trips, they are enriching experiences
                 that provide unforgettable and rejuvenating moments.
               </p>
+
+              <Button
+                variant={"shadow"}
+                color="primary"
+                size={"lg"}
+                as={Link}
+                href="/adventure/public"
+                className="h-14 w-full uppercase text-white text-xs md:text-base"
+                endContent={<MdPublic size={25} />}
+                radius="sm"
+              >
+                Need inspiration? Checkout Public Plans!
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <Divider className="mx-auto w-full max-w-[95%]" />
+      <Divider className="mx-auto w-full max-w-[90%] my-5" />
 
-      <section className="mx-auto my-8 w-full max-w-7xl">
+      <section className="mx-auto my-8 w-full 3xl:max-w-7xl">
         <div className="container grid gap-6 px-4 md:px-6 lg:gap-12">
           <div className="flex flex-col items-center justify-center gap-3 lg:items-start lg:justify-start">
             <div className="flex flex-col items-center justify-around gap-5 p-3 text-center md:p-0 xl:flex-row xl:text-start">
