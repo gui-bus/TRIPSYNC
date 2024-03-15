@@ -1,7 +1,7 @@
 
 # TRIPSYNC | Your Ultimate Vacation Planner - Plan, Organize, and Enjoy :file_folder:
 <div align="center">
-  <img src="https://github.com/gui-bus/Hotefy/blob/main/github/desktop/desktop_home_dark.png?raw=true" alt="Desktop Homepage" width="700" />
+  <img src="https://github.com/gui-bus/TRIPSYNC/blob/main/github/desktop_01.png?raw=true" alt="Desktop Homepage" width="700" />
 </div>
 
 <div align="center">
