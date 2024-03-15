@@ -4,9 +4,18 @@ import { useEffect, useState } from "react";
 import { Vacation } from "@prisma/client";
 import { Button, Link } from "@nextui-org/react";
 import { TbScriptPlus } from "react-icons/tb";
+import { Button as ShadcnButton } from "@/components/ui/button";
 
 const VacationList = ({ userId }: { userId: string }) => {
   const [vacationsData, setVacationsData] = useState<Vacation[]>([]);
+
+  const OnRefetchClick = () => {
+    const fetchVacationsData = async () => {
+      const data = await userVacations(userId);
+      setVacationsData(data);
+    };
+    fetchVacationsData();
+  };
 
   useEffect(() => {
     const fetchVacationsData = async () => {
@@ -38,21 +47,37 @@ const VacationList = ({ userId }: { userId: string }) => {
                 Oops! It looks like you haven&apos;t added any vacation plans
                 yet.
               </h2>
-              <p className="font-light">Why not start by creating your first vacation plan?</p>
+              <p className="font-light">
+                Why not start by creating your first vacation plan?
+              </p>
             </div>
 
-            <Button
-            variant={"shadow"}
-            color="primary"
-            size={"lg"}
-            as={Link}
-            href="/adventure/new"
-            className="h-14 w-full uppercase text-white"
-            endContent={<TbScriptPlus size={25} />}
-            radius="sm"
-          >
-            Plan a New Adventure
-          </Button>
+            <div className="flex w-full flex-col items-center">
+              <Button
+                variant={"shadow"}
+                color="primary"
+                size={"lg"}
+                as={Link}
+                href="/adventure/new"
+                className="h-14 w-full uppercase text-white"
+                endContent={<TbScriptPlus size={25} />}
+                radius="sm"
+              >
+                Plan a New Adventure
+              </Button>
+
+              <p className="text-xs">
+                Already have a vacation plan that isn&apos;t showing up on the
+                list?
+                <ShadcnButton
+                  variant={"link"}
+                  onClick={OnRefetchClick}
+                  className="px-0 pl-1 text-xs text-black opacity-70 transition-all duration-200 ease-in-out hover:text-primary"
+                >
+                  Click here to update it.
+                </ShadcnButton>
+              </p>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-5">
